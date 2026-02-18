@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Parking Space Detection</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <link rel="icon" href="{{ url_for('static', filename='img/favicon.png') }}">
+  <link rel="apple-touch-icon" href="{{ url_for('static', filename='img/apple-touch-icon.png') }}">
+
+
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+
+  <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='vendor/aos/aos.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+
+ 
+  <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
+</head>
+
+
+<body class="index-page">
+
+  <header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+
+      <a href="index.html" class="logo d-flex align-items-center me-auto">
+        <h1 class="sitename">Parking space Detection (Computer Vision Challenge - 2)</h1>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="#hero" class="active">Home</a></li>
+          <li><a href="#outputs">Outputs</a></li>       
+          <li><a href="#results">Results</a></li>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+    </div>
+  </header>
+
+  <main class="main">
+
+    <section id="hero" class="hero section">
+
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center" data-aos="fade-up">
+            <h1>Understanding How our system works</h1>
+            <p>Watch the video for a clear explanation of how our system works.</p>
+            <div class="d-flex">
+              <a href="https://youtu.be/1_RN3a5eNgQ" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
+            </div>
+          </div>
+          <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-out" data-aos-delay="100">
+            <img src="static/img/29751.png" class="img-fluid animated" alt="">
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+<section id="parking-detection" class="parking-detection section">
+  <div class="container section-title" data-aos="fade-up">
+    <h2>Parking Slot Detection</h2>
+    <p>Upload an image to detect parking slots using our AI model</p>
+  </div>
+
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-md-10">
+        <div class="upload-form-wrapper">
+          <!-- Form -->
+          <form id="upload-form" enctype="multipart/form-data" class="upload-form">
+            <div class="form-group mb-4">
+              <label for="image-upload" class="form-label">Choose Image File</label>
+              <input type="file" name="image" id="image-upload" class="form-control" accept="image/*" required>
+            </div>
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary btn-lg">
+                <i class="bi bi-upload"></i> Predict Parking Slots
+              </button>
+            </div>
+          </form>
+
+          <!-- Dynamic Result Display -->
+          <div id="result-section" class="mt-5 text-center d-none">
+            <h4 class="mb-3">Prediction Result</h4>
+            <img id="result-image" src="" alt="Predicted Result" class="img-fluid border rounded shadow mb-3">
+            <p id="slot-info" class="mb-3"></p>
+            <a id="download-link" href="#" class="btn btn-success" download>
+              <i class="bi bi-download"></i> Download Result CSV
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </section>
+
+
+   <section id="outputs" class="outputs section">
+
+      <div class="container section-title" data-aos="fade-up">
+        <h2>sample Outputs</h2>
+        <p>Here are some sample Generated Outputs by the Model</p>
+      </div>
+
+      <div class="container">
+
+        <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
+
+          </ul>
+
+          <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
+
+            <div class="col-lg-4 col-md-6 outputs-item isotope-item filter-app">
+              <img src="static/img/outputs/out_1 (1).jpg" class="img-fluid" alt="">
+            </div>
+
+            <div class="col-lg-4 col-md-6 outputs-item isotope-item filter-product">
+              <img src="static/img/outputs/out_2.jpg" class="img-fluid" alt="">
+            </div>
+
+            <div class="col-lg-4 col-md-6 outputs-item isotope-item filter-branding">
+              <img src="static/img/outputs/out_3.jpg" class="img-fluid" alt="">
+            </div>
+
+            <div class="col-lg-4 col-md-6 outputs-item isotope-item filter-books">
+              <img src="static/img/outputs/out_4.jpg" class="img-fluid" alt="">
+            </div>
+
+            <div class="col-lg-4 col-md-6 outputs-item isotope-item filter-app">
+              <img src="static/img/outputs/out_5.jpg" class="img-fluid" alt="">
+            </div>
+
+            <div class="col-lg-4 col-md-6 outputs-item isotope-item filter-product">
+              <img src="static/img/outputs/out_6.jpg" class="img-fluid" alt="">
+            </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+   <section id="results" class="results section">
+
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Results</h2>
+        <p>Results of the Trained YOLOv8 Model</p>
+      </div>
+
+      <div class="container">
+
+        <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
+
+          </ul>
+
+          <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
+
+            <div class="col-lg-4 col-md-6 results-item isotope-item filter-app">
+              <img src="static/img/results/confusion_matrix.png" class="img-fluid" alt="">
+            </div>
+
+            <div class="col-lg-4 col-md-6 results-item isotope-item filter-product">
+              <img src="static/img/results/confusion_matrix_normalized.png" class="img-fluid" alt="">
+            </div>
+
+            <div class="col-lg-4 col-md-6 results-item isotope-item filter-branding">
+              <img src="static/img/results/F1_curve.png" class="img-fluid" alt="">
+            </div>
+
+             <div class="col-lg-4 col-md-6 results-item isotope-item filter-books">
+              <img src="static/img/results/PR_curve.png" class="img-fluid" alt="">
+            </div>
+
+            <div class="col-lg-4 col-md-6 results-item isotope-item filter-branding">
+              <img src="static/img/results/P_curve.png" class="img-fluid" alt="">
+            </div>
+
+            <div class="col-lg-4 col-md-6 results-item isotope-item filter-app">
+              <img src="static/img/results/R_curve.png" class="img-fluid" alt="">
+            </div>
+
+           
+
+            
+
+        </div>
+
+      </div>
+
+    </section>
+  
+    <section id="contact" class="contact section">
+
+      
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Contact</h2>
+        <h3>G Jaya Praveen</h3>
+        <h3>228W1A1286</h3>
+        <h3>Information Technology</h3>        
+      </div>
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-5">
+
+            <div class="info-wrap">
+              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
+                <i class="bi bi-geo-alt flex-shrink-0"></i>
+                <div>
+                  <h3>Address</h3>
+                  <p>Velagapudi Ramakrishna Siddhartha Engineering College</p>
+                </div>
+              </div>
+
+              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
+                <i class="bi bi-telephone flex-shrink-0"></i>
+                <div>
+                  <h3>Call Us</h3>
+                  <p>8328273229</p>
+                </div>
+              </div>
+
+              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
+                <i class="bi bi-envelope flex-shrink-0"></i>
+                <div>
+                  <h3>Email </h3>
+                  <p>228w1a1286@vrsec.ac.in</p>
+                </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer id="footer" class="footer">
+
+  </footer>
+
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<div id="preloader"></div>
+
+
+<script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/php-email-form/validate.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/aos/aos.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/glightbox/js/glightbox.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/purecounter/purecounter_vanilla.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/imagesloaded/imagesloaded.pkgd.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/swiper/swiper-bundle.min.js') }}"></script>
+
+
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+
+</body>
+
+</html>
